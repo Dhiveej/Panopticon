@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================================================
+   Panopticon Global Styles — High-Fidelity Realistic Theme
+   =========================================================================== */
+
+:root {
+  --color-cyan: #00d1ff;
+  --color-crimson: #ff003c;
+  --color-bg-start: #08080A;
+  --color-bg-end: #111216;
+  --color-panel: rgba(8, 8, 12, 0.72);
+  --color-panel-border: rgba(255, 255, 255, 0.04);
+  --color-panel-inner-glow: rgba(0, 209, 255, 0.02);
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Global resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(170deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+  color: #c8cdd5;
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===========================================================================
+   3D Graph Background Container
+   =========================================================================== */
+.graph-bg {
+  background: linear-gradient(170deg, #08080A 0%, #111216 100%);
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.9);
+}
+
+/* ===========================================================================
+   Glassmorphism Panel — Deeply Integrated, Etched Into UI
+   =========================================================================== */
+.glass-panel {
+  background: var(--color-panel);
+  backdrop-filter: blur(24px) saturate(1.3) brightness(0.95);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3) brightness(0.95);
+  border: 1px solid var(--color-panel-border);
+  border-radius: 10px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 1px 0 rgba(255, 255, 255, 0.02) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.3) inset,
+    0 0 60px -20px var(--color-panel-inner-glow) inset;
+}
+
+/* Etched label style for panel headers */
+.panel-header-etched {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.25));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.panel-header-etched.cyan {
+  background: linear-gradient(180deg, rgba(0,209,255,0.8), rgba(0,209,255,0.4));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.panel-header-etched.crimson {
+  background: linear-gradient(180deg, rgba(255,0,60,0.8), rgba(255,0,60,0.4));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ===========================================================================
+   Typography Refinements
+   =========================================================================== */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 1.5px;
+}
+
+.font-terminal {
+  font-family: var(--font-mono);
+}
+
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(160, 170, 185, 0.5);
+}
+
+.metric-value-etched {
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-rendering: geometricPrecision;
+}
+
+/* ===========================================================================
+   Neon Scrollbars
+   =========================================================================== */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 209, 255, 0.3);
+}
+
+/* ===========================================================================
+   Threat Row Pulse — Subtle, Authentic
+   =========================================================================== */
+@keyframes threat-pulse {
+  0%, 100% {
+    background-color: rgba(255, 0, 60, 0.04);
+    box-shadow: inset 0 0 3px rgba(255, 0, 60, 0.15);
+  }
+  50% {
+    background-color: rgba(255, 0, 60, 0.10);
+    box-shadow: inset 0 0 10px rgba(255, 0, 60, 0.25);
+  }
+}
+
+.threat-row {
+  animation: threat-pulse 2s ease-in-out infinite;
+  border-left: 2px solid rgba(255, 0, 60, 0.5);
+}
+
+/* ===========================================================================
+   Status Indicators
+   =========================================================================== */
+.status-nominal {
+  color: var(--color-cyan);
+  text-shadow: 0 0 6px rgba(0, 209, 255, 0.3);
+}
+
+.status-critical {
+  color: var(--color-crimson);
+  text-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+  animation: glow-text 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-text {
+  0%, 100% { text-shadow: 0 0 6px rgba(255, 0, 60, 0.3); }
+  50% { text-shadow: 0 0 14px rgba(255, 0, 60, 0.5), 0 0 30px rgba(255, 0, 60, 0.15); }
+}
+
+/* ===========================================================================
+   Metric Value Transitions
+   =========================================================================== */
+.metric-value {
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+/* ===========================================================================
+   Force graph container
+   =========================================================================== */
+.graph-container canvas {
+  display: block;
+}
